@@ -16,7 +16,8 @@
         <td >{{item.companyLocations}}</td>
         <td >{{item.companyGst}}</td>
         <td>
-              <button class="btn btn-primary" *ngIf="addToFav" (click)="addFav(item.companyName)">Add to Fav... !</button> 
+          <a ><i (click)="addFav(item.companyName)" class="bi bi-star text-warning"></i></a>
+              <!-- <button class="bi bi-heart" *ngIf="addToFav" (click)="addFav(item.companyName)">Add to Fav... !</button>  -->
         </td>
         <td>
           <button class="btn btn-primary" *ngIf="EditBtn"  (click)="edit(item)">Edit</button>

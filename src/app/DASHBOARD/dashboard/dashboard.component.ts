@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { dataService } from 'src/app/SERVICES/data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,13 +20,12 @@ export class DashboardComponent  {
     this.datasevice.dataEmitter.subscribe((value) => {
       this.name = value;
       // console.log(value);
-      
     })
   }
 
 
   // @Input() name = '';
-  Loader:boolean = false;
+  // Loader:boolean = false;
 
   // Active(){
   //   this.Loader = true
