@@ -1,14 +1,13 @@
 import { Router } from '@angular/router';
 import { User } from './../../MODEL/User';
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
-import { LoggingService } from 'src/app/SERVICES/isLogin.service';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers:[LoggingService],
+  providers:[],
 })
 export class LoginComponent {
 
@@ -18,14 +17,15 @@ export class LoginComponent {
 router : Router = inject(Router);
  isLog : boolean  = false;
   User: any;
+  inactive:boolean = false;
 
-constructor(private log:LoggingService){}
+constructor(){}
 
 
   userDetails:User[] = []
 
   Login(){
-    
+    this.inactive = true;
     const username = this.username.nativeElement.value;
     const UserPassword = this.userPassword.nativeElement.value;
 
@@ -58,7 +58,7 @@ constructor(private log:LoggingService){}
       
     }
     else{
-            this.userDetails[founder].isLogin = true;
+      this.userDetails[founder].isLogin = true;
       
             Swal.fire({
               position: "top-end",
@@ -71,7 +71,6 @@ constructor(private log:LoggingService){}
       sessionStorage.setItem('LoginUsers',JSON.stringify(this.userDetails[founder]))
       this.router.navigate(['/dashboard'],{queryParams:{userRole : this.userDetails[founder].userRole}})
       // this.isLog = true;
-      this.log.isLogin(true)  
     }
 
   }
@@ -79,8 +78,11 @@ constructor(private log:LoggingService){}
     const userName = this.username.nativeElement.value;
     const userPassword = this.userPassword.nativeElement.value;
 
-    if(userName ==='' && userPassword ===''){
-       return confirm('You have unsaved changes. Do you want to navigate away?');
+    if(this.inactive === true){
+        return true;
+    }
+    else if(userName || userPassword){
+      return confirm('You have unsaved changes. Do you want to navigate away?');
     }
     else{
       return true

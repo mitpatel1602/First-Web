@@ -10,7 +10,6 @@ import { CompanyComponent } from './COMPANY/company/company.component';
 import { EmployeeComponent } from './EMPLOYEE/employee/employee.component';
 import { BranchComponent } from './BRANCH/branch/branch.component';
 import { DashboardComponent } from './DASHBOARD/dashboard/dashboard.component';
-import { LoggingService } from './SERVICES/isLogin.service';
 import { AuthGuard } from './auth.guard';
 import { branchDetails } from './SERVICES/branch.service';
 import { employeeDetails } from './SERVICES/employee.service';
@@ -18,6 +17,8 @@ import { CompanyDetails } from './SERVICES/company.service';
 import { NOTFOUNDComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { dataService } from './SERVICES/data.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 
@@ -37,14 +38,14 @@ import { dataService } from './SERVICES/data.service';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [ LoggingService,
+  providers: [
                userDetails,
                AuthGuard,
                branchDetails,
                employeeDetails,
                CompanyDetails,
                branchDetails,
-               dataService
+               dataService,
             ],
   bootstrap: [AppComponent]
 })

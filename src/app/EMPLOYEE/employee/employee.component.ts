@@ -1,4 +1,4 @@
-import { filter } from 'rxjs';
+import { filter, map } from 'rxjs';
 import Seal from 'sweetalert2';
 import { employee } from './../../MODEL/Employee';
 import { employeeDetails } from './../../SERVICES/employee.service';
@@ -28,7 +28,6 @@ export class EmployeeComponent implements OnInit {
   userRole:string|null = null
   role:string | any = "";
   getIndex:number|null = null
-  allEmp : any = null;
   isActive:boolean = false;
   
 
@@ -45,11 +44,12 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
     
     //  this.allEmp = this.employee.;
-  //  this.employee.getAllEmployee().subscribe((data:any)=>{
-  //   this.emp = data;
-  //   });
+    // this.employee.getAllEmployee().subscribe((data:employee[])=>{
+    // this.emp = data;
+    // });
  
    this.emp =  this.activeRoute.snapshot.data['employee'];
+  //  this.emp =  this.activeRoute.snapshot.data['employee'];
 
     sessionStorage.setItem('Employees',JSON.stringify(this.emp))
 

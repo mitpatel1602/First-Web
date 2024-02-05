@@ -1,3 +1,4 @@
+
 import Seal from 'sweetalert2';
 
 import { CompanyDetails } from 'src/app/SERVICES/company.service';
@@ -5,7 +6,7 @@ import { companyModel } from './../../MODEL/Company';
 
 
 import { Component, OnInit,  inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { dataService } from 'src/app/SERVICES/data.service';
 
 @Component({
@@ -24,6 +25,7 @@ export class CompanyComponent implements OnInit  {
   comName:string|null = null;
   comLocation:string|null = null;
   comGst:number|null = null;
+  companyName : string | null = null;
   
 
 
@@ -35,22 +37,27 @@ export class CompanyComponent implements OnInit  {
   role:string | any = null;
   getIndex:number|null = null;
   isActive:boolean = false;
+  searchText :string = '';
   
   activeRoute = inject(ActivatedRoute);
+  router = inject(Router);
   
   constructor(private companyData:CompanyDetails , private datasevice:dataService ){}
-  
 
   companyList : companyModel [] = [];
 
 
+
   ngOnInit(): void {
     
-    
-    this.companyData.getAllCompanyDetails().subscribe((data:any)=>{
+
+
+  
+    this.companyData.getAllCompanyDetails().subscribe((data:companyModel[])=>{
       this.companyList = data;
       sessionStorage.setItem('CompanyDetails',JSON.stringify(this.companyList))
     })
+
     // this.companyList = this.companyData;
     
     // console.log(this.companyList);
@@ -77,6 +84,7 @@ export class CompanyComponent implements OnInit  {
 
   
   }
+
 
 
   edit(data:companyModel){
@@ -137,3 +145,5 @@ export class CompanyComponent implements OnInit  {
   }
 
 }
+
+

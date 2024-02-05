@@ -1,5 +1,5 @@
 import { employee } from './../MODEL/Employee';
-import { Observable } from "rxjs";
+import { Observable, from } from "rxjs";
 
 
 export class employeeDetails{
@@ -30,4 +30,6 @@ export class employeeDetails{
             },2500)
         })
     }
+
+    trans = from(this.employeeDetails)
 }

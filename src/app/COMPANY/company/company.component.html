@@ -1,4 +1,5 @@
-<table class="table">
+
+<table class="table table-stripd">
     <thead>
       <tr>
         <th scope="col">CompanyId</th>
@@ -16,7 +17,7 @@
         <td >{{item.companyLocations}}</td>
         <td >{{item.companyGst}}</td>
         <td>
-          <a ><i (click)="addFav(item.companyName)" class="bi bi-star text-warning"></i></a>
+          <a ><i (click)="addFav(item.companyName)"  *ngIf="addToFav" class="bi bi-star text-warning"></i></a>
               <!-- <button class="bi bi-heart" *ngIf="addToFav" (click)="addFav(item.companyName)">Add to Fav... !</button>  -->
         </td>
         <td>
@@ -70,3 +71,5 @@
     </div>
   </span>
   </form>
+
+  
