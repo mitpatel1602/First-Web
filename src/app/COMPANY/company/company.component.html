@@ -1,0 +1,71 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">CompanyId</th>
+        <th scope="col">CompanyName</th>
+        <th scope="col">CompanyLocation</th>
+        <th scope="col">CompanyGst</th>
+        <th scope="col">Add Favorite</th>
+        <th scope="col" colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of companyList">
+      <tr>
+        <td >{{item.companyId}}</td>
+        <td >{{item.companyName}}</td>
+        <td >{{item.companyLocations}}</td>
+        <td >{{item.companyGst}}</td>
+        <td>
+              <button class="btn btn-primary" *ngIf="addToFav" (click)="addFav(item.companyName)">Add to Fav... !</button> 
+        </td>
+        <td>
+          <button class="btn btn-primary" *ngIf="EditBtn"  (click)="edit(item)">Edit</button>
+          <button class="btn btn-warning" *ngIf="DeleteBtn" (click)="Delete(item)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <form>
+<span *ngIf="isActive">
+    <div class="d-flex flex-row align-items-center mb-4">
+      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+      <div class="form-outline flex-fill mb-0" >
+        <label class="form-label" >CompanyId</label>
+        <input type="text"   class="form-control" name="comId" [(ngModel)]="comId" />
+      </div>
+    </div>
+
+    
+    <div class="d-flex flex-row align-items-center mb-4">
+      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+      <div class="form-outline flex-fill mb-0"  >
+        <label class="form-label" >CompanyName</label>
+        <input type="text"   class="form-control" name="comName" [(ngModel)]="comName" />
+      </div>
+    </div>
+
+    
+    <div class="d-flex flex-row align-items-center mb-4">
+      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+      <div class="form-outline flex-fill mb-0"  >
+        <label class="form-label" >CompanyLocation</label>
+        <input type="text"   class="form-control" name="comLocation" [(ngModel)]="comLocation" />
+      </div>
+    </div>
+
+      
+    <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0" >
+          <label class="form-label" >CompanyGst</label>
+          <input type="text"   class="form-control" name="comGst" [(ngModel)]="comGst" />
+        </div>
+      </div>
+
+    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+      <button type="button" class="btn btn-primary btn-lg" (click)="Update()">Update</button> 
+    </div>
+  </span>
+  </form>

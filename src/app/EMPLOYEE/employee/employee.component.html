@@ -1,0 +1,69 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">EmployeeId</th>
+        <th scope="col">EmployeeName</th>
+        <th scope="col">EmployeeNumber</th>
+        <th scope="col">EmployeeAge</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of emp">
+        <tr>
+            <td>{{item.employeeId}}</td>
+            <td>{{item.employeeName}}</td>
+            <td>{{item.employeeNumber}}</td>
+            <td>{{item.employeeAge}}</td>
+            <td>
+              <button class="btn btn-primary" *ngIf="EditBtn" (click)="Edit(item)">Edit</button>
+              <button class="btn btn-warning" *ngIf="DeleteBtn" (click)="Delete(item)">Delete</button>
+            </td>
+        </tr> 
+    </tbody>
+    </table>
+
+    
+    <form>
+
+      <span *ngIf="isActive">
+
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+          <label class="form-label" >EmployeeId</label>
+          <input type="text"   class="form-control"  [(ngModel)]="empId" name="empId" />
+        </div>
+      </div>
+
+      
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+          <label class="form-label" >EmployeeName</label>
+          <input type="text"   class="form-control" [(ngModel)]="empName" name="empName"/>
+        </div>
+      </div>
+
+      
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+          <label class="form-label" >EmployeeNumber</label>
+          <input type="text"   class="form-control"  [(ngModel)]="empNumber" name="empNumber" />
+        </div>
+      </div>
+
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+          <label class="form-label" >EmployeeAge</label>
+          <input type="text"   class="form-control"  [(ngModel)]="empAge" name="empAge" />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+        <button type="button" class="btn btn-primary btn-lg" (click)="Update()">Update</button> 
+      </div>
+
+    </span>
+    </form>
