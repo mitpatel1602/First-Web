@@ -9,7 +9,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './DASHBOARD/dashboard/dashboard.component';
 import { AuthGuard } from './auth.guard';
 import { NOTFOUNDComponent } from './not-found/not-found.component';
-
 const routes: Routes = [
   {
     path:'' , component:LoginComponent , canDeactivate:[AuthGuard]

@@ -31,5 +31,17 @@ export class employeeDetails{
         })
     }
 
-    trans = from(this.employeeDetails)
+    filterEmployeeByAge(filterBy:string){
+        if(filterBy.toLowerCase()=== 'all' || filterBy === '' || this.employeeDetails.length === 0)
+        {
+                    return this.employeeDetails;
+        }
+        else
+        {
+            return this.employeeDetails.filter((emp)=>{
+                return emp.employeeAge !== null && emp.employeeAge > 18 ; 
+           
+            })
+        }
+    }
 }

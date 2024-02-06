@@ -1,4 +1,5 @@
-
+<div> Total Company :- {{ totalCompany  | async}}</div>
+<input type="text" name="comName" id="first" placeholder="Search Company" (keyup)="SearchText($event)"  (change)="searchValueChange($event)" >
 <table class="table table-stripd">
     <thead>
       <tr>

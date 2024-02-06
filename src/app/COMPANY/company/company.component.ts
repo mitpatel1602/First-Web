@@ -1,3 +1,4 @@
+import { __values } from 'tslib';
 
 import Seal from 'sweetalert2';
 
@@ -6,7 +7,7 @@ import { companyModel } from './../../MODEL/Company';
 
 
 import { Component, OnInit,  inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Resolve } from '@angular/router';
 import { dataService } from 'src/app/SERVICES/data.service';
 
 @Component({
@@ -37,7 +38,9 @@ export class CompanyComponent implements OnInit  {
   role:string | any = null;
   getIndex:number|null = null;
   isActive:boolean = false;
-  searchText :string = '';
+  searchText :string  = '';
+
+
   
   activeRoute = inject(ActivatedRoute);
   router = inject(Router);
@@ -46,17 +49,21 @@ export class CompanyComponent implements OnInit  {
 
   companyList : companyModel [] = [];
 
-
+  totalCompany = new Promise((resolve,rejection) => {
+    setTimeout(()=>{
+      resolve(this.companyList.length)
+    })
+  })
 
   ngOnInit(): void {
-    
 
-
-  
-    this.companyData.getAllCompanyDetails().subscribe((data:companyModel[])=>{
+     this.companyData.getAllCompanyDetails().subscribe((data:companyModel[])=>{
       this.companyList = data;
       sessionStorage.setItem('CompanyDetails',JSON.stringify(this.companyList))
+      
     })
+
+    this.companyList = this.companyData.filterByCompanyName(this.searchText);
 
     // this.companyList = this.companyData;
     
@@ -83,6 +90,20 @@ export class CompanyComponent implements OnInit  {
     }
 
   
+  }
+
+  SearchText(data:string | any){
+    this.searchText = data.target?.value;
+    this.companyList =  this.companyData.filterByCompanyName(this.searchText);
+    // console.log(this.searchText);
+      
+  }
+
+  searchValueChange(event:any){
+
+    let selectedValue = event.target.value;
+    this.searchText = selectedValue;
+    this.companyList =  this.companyData.filterByCompanyName(selectedValue);
   }
 
 
@@ -125,6 +146,8 @@ export class CompanyComponent implements OnInit  {
     });
     
     this.isActive = false;
+
+    this.companyList =  this.companyData.filterByCompanyName(this.searchText);
     // this.comId =null;
     // this.comName = '';
     // this.comLocation = '';

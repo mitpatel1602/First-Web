@@ -1,4 +1,4 @@
-import { filter, map } from 'rxjs';
+
 import Seal from 'sweetalert2';
 import { employee } from './../../MODEL/Employee';
 import { employeeDetails } from './../../SERVICES/employee.service';
@@ -30,6 +30,7 @@ export class EmployeeComponent implements OnInit {
   getIndex:number|null = null
   isActive:boolean = false;
   
+  filterText : string = "All"
 
   activeRoute:ActivatedRoute = inject(ActivatedRoute);
 
@@ -38,8 +39,13 @@ export class EmployeeComponent implements OnInit {
 
   constructor(private employee:employeeDetails){}
 
-
- 
+  onFilterValueChange(event:any){
+      // console.log(event.target.value);
+      let selectedValue = event.target.value;
+      this.filterText = selectedValue;
+    this.emp = this.employee.filterEmployeeByAge(selectedValue)
+      
+  }
 
   ngOnInit(): void {
     
@@ -47,9 +53,10 @@ export class EmployeeComponent implements OnInit {
     // this.employee.getAllEmployee().subscribe((data:employee[])=>{
     // this.emp = data;
     // });
- 
+
    this.emp =  this.activeRoute.snapshot.data['employee'];
-  //  this.emp =  this.activeRoute.snapshot.data['employee'];
+
+  // this.emp = this.employee.filterEmployeeByAge(this.filterText)
 
     sessionStorage.setItem('Employees',JSON.stringify(this.emp))
 
@@ -88,7 +95,7 @@ export class EmployeeComponent implements OnInit {
       this.getIndex = this.emp.findIndex((e) =>{
        return e.employeeId === data.employeeId
       })
-      console.log(this.getIndex);
+      // console.log(this.getIndex);
       this.empId = data.employeeId;
       this.empName = data.employeeName;
       this.empNumber = data.employeeNumber;
@@ -109,19 +116,7 @@ export class EmployeeComponent implements OnInit {
     });
     
     this.isActive = false;
-
-    // this.empId = null;
-    // this.empName = '';
-    // this.empNumber = null;
-    
-    
-// Swa.fire({
-//   position: "top-end",
-//   icon: "success",
-//   title: "Your work has been saved",
-//   showConfirmButton: false,
-//   timer: 1500
-// });
+    this.emp = this.employee.filterEmployeeByAge(this.filterText)
   }
 
 }

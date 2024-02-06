@@ -1,11 +1,11 @@
-import { Observable, from } from "rxjs";
+import { Observable } from "rxjs";
 import { companyModel } from "../MODEL/Company";
 
 export class CompanyDetails{
     constructor(){}
     Company:companyModel[] = [
-        {companyId:101 , companyName:'brain' , companyLocations:'gota' , companyGst:23456789},
-        {companyId:102 , companyName:'abc' , companyLocations:'gota' , companyGst:34532343},
+        {companyId:101 , companyName:'brain' , companyLocations:'Gota ' , companyGst:23456789},
+        {companyId:102 , companyName:'abc' , companyLocations:'Gota' , companyGst:34532343},
         {companyId:103 , companyName:'xyz' , companyLocations:'ahmadabad' , companyGst:10765645},
         {companyId:104 , companyName:'pqr' , companyLocations:'surat' , companyGst:10765645},
         {companyId:105 , companyName:'def' , companyLocations:'ahmadabad' , companyGst:10765645},
@@ -24,5 +24,18 @@ export class CompanyDetails{
             }//define the time here
             )
         })
+    }
+    filterByCompanyName(filterBy:string){
+
+        if(filterBy?.toLowerCase() === ' ' || filterBy === '  ' || filterBy?.length === 0)
+        {
+            return this.Company;
+        }
+        else
+        {
+        return this.Company.filter((com)=>{
+        return  com.companyLocations?.toLowerCase() === filterBy?.toLowerCase(); 
+        })
+}
     }
 }
