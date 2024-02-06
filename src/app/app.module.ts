@@ -17,7 +17,6 @@ import { CompanyDetails } from './SERVICES/company.service';
 import { NOTFOUNDComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { dataService } from './SERVICES/data.service';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
