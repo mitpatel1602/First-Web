@@ -1,23 +1,31 @@
+
 import { Router } from '@angular/router';
 import { User } from './../../MODEL/User';
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
-import Swal from 'sweetalert2';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import Seal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent  {
+
 
   userId: number | null = null
+
+
+
   
+ 
 
   router : Router = inject(Router);
 
   @ViewChild('name')name!:ElementRef;
   @ViewChild('email')email!:ElementRef;
   @ViewChild('password')password!:ElementRef;
+  
 
   isSubmitted : boolean = false;
  
@@ -47,7 +55,7 @@ export class RegisterComponent {
     else{
       this.userDetail.push({userId:this.userDetail.length+1,userName:userName,userEmail:userEmail,userPassword:userPassword,userRole:"Basic-User",isLogin:false})
       sessionStorage.setItem('NewUser',JSON.stringify(this.userDetail));
-      Swal.fire({
+      Seal.fire({
         title: "Good job!",
         text: "Account Created !",
         icon: "success"
