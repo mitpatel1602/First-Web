@@ -21,8 +21,7 @@ export class CompanyDetails{
         return new Observable<companyModel[]>((sub)=>{
             setTimeout(()=>{
                 sub.next(this.Company)
-            }//define the time here
-            )
+            })
         })
     }
     filterByCompanyName(filterBy:string){
@@ -34,8 +33,8 @@ export class CompanyDetails{
         else
         {
         return this.Company.filter((com)=>{
-        return  com.companyLocations?.toLowerCase() === filterBy?.toLowerCase(); 
+        return  com.companyName?.toLowerCase() === filterBy?.toLowerCase(); 
         })
-}
+        }
     }
 }

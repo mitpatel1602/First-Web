@@ -1,10 +1,6 @@
-import { __values } from 'tslib';
-
-import Seal from 'sweetalert2';
-
+import Seal from 'sweetalert2'
 import { CompanyDetails } from 'src/app/SERVICES/company.service';
 import { companyModel } from './../../MODEL/Company';
-
 
 import { Component, OnInit,  inject } from '@angular/core';
 import { ActivatedRoute, Router, Resolve } from '@angular/router';
